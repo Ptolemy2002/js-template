@@ -1,0 +1,17 @@
+{
+    "name": "example",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "uninstall": "bash ./scripts/uninstall.sh",
+        "reinstall": "bash ./scripts/reinstall.sh"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@local/lib": "file:../lib"
+    }
+}
