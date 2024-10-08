@@ -7,6 +7,11 @@
     "files": [
         "/dist"
     ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com",
+      "directory": "lib"
+    },
     "scripts": {
         "build": "tsc --project ./tsconfig.json",
         "postinstall": "npx typesync",
