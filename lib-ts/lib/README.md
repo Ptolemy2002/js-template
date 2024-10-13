@@ -1,4 +1,4 @@
-# TypeScript Library
+# {{ tmplr.project_name }}
 
 ## Peer Dependencies
 
@@ -16,4 +16,3 @@ The following commands exist in the project:
 - `npm run release-patch` - Publishes the library to npm with a patch version bump
 - `npm run release-minor` - Publishes the library to npm with a minor version bump
 - `npm run release-major` - Publishes the library to npm with a major version bump
-Hyper Icon

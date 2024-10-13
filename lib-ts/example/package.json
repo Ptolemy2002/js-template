@@ -13,5 +13,10 @@
     "license": "ISC",
     "dependencies": {
         "@local/lib": "file:../lib"
+    },
+    "repository": {
+      "type": "git",
+      "url": "{{tmplr.repository_url}}",
+      "directory": "example"
     }
 }

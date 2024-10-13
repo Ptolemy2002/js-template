@@ -1,2 +1,2 @@
-import { sayHello } from "@local/lib";
+import { sayHello } from "{{tmplr.package_identifier}}";
 sayHello();

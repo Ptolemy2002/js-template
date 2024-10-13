@@ -1,0 +1,46 @@
+steps:
+  - read: project_name
+    prompt: "Project name"
+    choices:
+      - From file:
+          from: filesystem.rootdir
+      - Custom:
+          prompt: "Enter project name:"
+          default:
+            from: filesystem.rootdir
+
+  - read: workspace_name
+    prompt: "Workspace name"
+    choices:
+      - From git username:
+          from: git.remote_owner
+      - Custom:
+          prompt: "Enter workspace name:"
+          default:
+            from: git.remote_owner
+      - None: ""
+  
+  - if: workspace_name
+    read: package_identifier
+    eval: "@{{ workspace_name | kebab-case }}/{{ project_name | kebab-case }}"
+    else:
+      read: package_identifier
+      eval: "{{ project_name | kebab-case }}"
+
+  - read: repository_url
+    prompt: "Repository URL"
+    choices:
+      - From git:
+          eval: "https://{{ git.remote_provider }}/{{ git.remote_owner }}/{{ project_name | kebab-case }}"
+      - Custom:
+          prompt: "Enter repository URL:"
+
+  - update: "lib/README.md"
+  - update: "lib/package.json"
+  - update: "example/package.json"
+  - update: "example/**/*.js"
+  - remove: "lib/package-lock.json"
+  - remove: "example/package-lock.json"
+  - remove: "lib/dist"
+  - remove: "lib/node_modules"
+  - remove: "example/node_modules"
