@@ -14,10 +14,12 @@ steps:
     choices:
       - From git username:
           from: git.remote_owner
+          fallback: env.USER
       - Custom:
           prompt: "Enter workspace name:"
           default:
             from: git.remote_owner
+            fallback: env.USER
       - None: ""
   
   - if: workspace_name
@@ -29,8 +31,10 @@ steps:
     
   - read: remote_provider
     from: git.remote_provider
+    fallback: env.REMOTE_PROVIDER
   - read: remote_owner
     from: git.remote_owner
+    fallback: env.USER
 
   - read: repository_url
     prompt: "Repository URL"
