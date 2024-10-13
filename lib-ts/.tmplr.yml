@@ -26,12 +26,17 @@ steps:
     else:
       read: package_identifier
       eval: "{{ project_name | kebab-case }}"
+    
+  - read: remote_provider
+    from: git.remote_provider
+  - read: remote_owner
+    from: git.remote_owner
 
   - read: repository_url
     prompt: "Repository URL"
     choices:
       - From git:
-          eval: "https://{{ git.remote_provider }}/{{ git.remote_owner }}/{{ project_name | kebab-case }}"
+          eval: "https://{{ remote_provider }}/{{ remote_owner }}/{{ project_name | kebab-case }}"
       - Custom:
           prompt: "Enter repository URL:"
 
