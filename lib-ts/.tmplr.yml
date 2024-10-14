@@ -1,4 +1,13 @@
 steps:
+  - read: remote_provider
+    from: git.remote_provider
+    fallback:
+      from: env.TMPLR_REMOTE_PROVIDER
+  - read: remote_owner
+    from: git.remote_owner
+    fallback:
+      from: env.TMPLR_GIT_USER
+      
   - read: project_name
     prompt: "Project name"
     choices:
@@ -13,15 +22,11 @@ steps:
     prompt: "Workspace name"
     choices:
       - From git username:
-          from: git.remote_owner
-          fallback:
-            from: env.TMPLR_GIT_USER
+          from: remote_owner
       - Custom:
           prompt: "Enter workspace name:"
           default:
-            from: git.remote_owner
-            fallback:
-              from: env.TMPLR_GIT_USER
+            from: remote_owner
       - None: ""
   
   - if: workspace_name
@@ -30,15 +35,6 @@ steps:
     else:
       read: package_identifier
       eval: "{{ project_name | kebab-case }}"
-    
-  - read: remote_provider
-    from: git.remote_provider
-    fallback:
-      from: env.TMPLR_REMOTE_PROVIDER
-  - read: remote_owner
-    from: git.remote_owner
-    fallback:
-      from: env.TMPLR_GIT_USER
 
   - read: repository_url
     prompt: "Repository URL"
