@@ -8,9 +8,9 @@
         "/dist"
     ],
     "repository": {
-      "type": "git",
-      "url": "{{tmplr.repository_url}}",
-      "directory": "lib"
+        "type": "git",
+        "url": "{{tmplr.repository_url}}",
+        "directory": "lib"
     },
     "scripts": {
         "build": "tsc --project ./tsconfig.json",
@@ -27,7 +27,9 @@
         "release-major": "bash ./scripts/release.sh major"
     },
     "paths": {
-        "*": ["types/*.d.ts"]
+        "*": [
+            "types/*.d.ts"
+        ]
     },
     "devDependencies": {}
 }

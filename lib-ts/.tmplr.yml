@@ -72,7 +72,7 @@ steps:
   - update: "lib/README.md"
   - update: "lib/package.json"
   - update: "example/package.json"
-  - update: "example/**/*.js"
+  - update: "example/**/*.ts"
   - remove: "lib/package-lock.json"
   - remove: "example/package-lock.json"
   - remove: "lib/dist"
