@@ -9,6 +9,7 @@
     "maxNodeModuleJsDepth": 0
   },
   "include": [
-    "src"
+    "src",
+    "types/**/*.d.ts"
   ]
 }
