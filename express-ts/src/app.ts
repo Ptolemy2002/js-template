@@ -1,14 +1,17 @@
+import dotEnv from 'dotenv';
+import appModulePath from 'app-module-path';
+appModulePath.addPath(__dirname);
+dotEnv.config();
+
 import ms from 'ms';
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import dotEnv from 'dotenv';
 import expressRateLimit from 'express-rate-limit';
 import cors from 'cors';
 import { HttpError } from 'http-errors';
-import appModulePath from 'app-module-path';
-appModulePath.addPath(__dirname);
-dotEnv.config();
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from 'services/swagger_output.json';
 
 import indexRouter from 'routes/index';
 
@@ -18,6 +21,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+try {
+    app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile, {explorer: true}));
+    console.log("Swagger documentation is available at /api/v1/docs");
+} catch (error) {
+    console.error("Error loading Swagger documentation:", error);
+}
 
 if (process.env.NODE_ENV === 'production') {
     const limiter = expressRateLimit({
@@ -31,7 +41,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? process.env.PROD_FRONTEND_URL : process.env.DEV_FRONTEND_URL,
+    origin: process.env.NODE_ENV === 'production'
+        ? process.env.PROD_FRONTEND_URL : process.env.DEV_FRONTEND_URL,
     credentials: true
 }));
 
