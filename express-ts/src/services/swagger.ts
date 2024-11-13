@@ -1,11 +1,12 @@
 import swaggerAutogen from "swagger-autogen";
+import getEnv from "../env";
+const env = getEnv();
 
 const outputFile = './swagger_output.json';
 const endpointFiles = ['src/routes/index.ts'];
 
 const url = (
-    (process.env.NODE_ENV === 'production' && process.env.PROD_BACKEND_URL)
-    || (process.env.DEV_BACKEND_URL ?? 'http://localhost:8080')
+    (env.isProd && env.prodApiUrl) || env.devApiUrl
 ).split('://').slice(1).join('://');
 const baseUrl = url.endsWith('/api/v1') ? url.slice(0, -7) : url;
 
@@ -16,7 +17,7 @@ const doc = {
 		description: "Documentation of the V2X F24 API",
 	},
     host: baseUrl,
-	schemes: [process.env.NODE_ENV === 'production' ? "https" : "http"],
+	schemes: [env.isProd ? "https" : "http"],
 	consumes: ["application/json"],
 	produces: ["application/json"],
 

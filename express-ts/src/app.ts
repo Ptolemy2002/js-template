@@ -1,8 +1,7 @@
-import dotEnv from 'dotenv';
 import appModulePath from 'app-module-path';
 appModulePath.addPath(__dirname);
-dotEnv.config();
 
+import getEnv from "env";
 import ms from 'ms';
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
@@ -12,6 +11,7 @@ import cors from 'cors';
 import { HttpError } from 'http-errors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from 'services/swagger_output.json';
+const env = getEnv();
 
 import indexRouter from 'routes/index';
 
@@ -29,7 +29,7 @@ try {
     console.error("Error loading Swagger documentation:", error);
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (env.nodeEnv === 'production') {
     const limiter = expressRateLimit({
         windowMs: ms("5m"),
         max: 100, // Limit each IP to 100 requests per windowMs
@@ -41,8 +41,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production'
-        ? process.env.PROD_FRONTEND_URL : process.env.DEV_FRONTEND_URL,
+    origin: env.nodeEnv === 'production'
+        ? env.prodClientUrl : env.devClientUrl,
     credentials: true
 }));
 
