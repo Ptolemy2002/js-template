@@ -42,7 +42,7 @@ if (env.nodeEnv === 'production') {
 
 app.use(cors({
     origin: env.nodeEnv === 'production'
-        ? env.prodClientUrl : env.devClientUrl,
+        ? env.prodClientUrl! : env.devClientUrl,
     credentials: true
 }));
 

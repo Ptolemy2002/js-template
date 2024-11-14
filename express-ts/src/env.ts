@@ -2,11 +2,38 @@ import { z } from 'zod';
 import dotEnv from 'dotenv';
 dotEnv.config();
 
-function urlOrEmpty() {
-    return z.union([
+function nullableUrl(defaultValue?: string | null) {
+    const result = z.union([
+        z.string().trim().url(),
+        z.literal(""),
+        z.null()
+    ]);
+
+    if (defaultValue !== undefined) {
+        return result
+            .transform(value => value === "" ? defaultValue : value)
+            .optional()
+            .default(defaultValue);
+    }
+
+    return result;
+}
+
+
+function url(defaultValue?: string) {
+    const result = z.union([
         z.string().trim().url(),
         z.literal("")
-    ]).transform(value => value === "" ? null : value);
+    ]);
+
+    if (defaultValue !== undefined) {
+        return result
+            .transform(value => value === "" ? defaultValue : value)
+            .optional()
+            .default(defaultValue);
+    }
+
+    return result;
 }
 
 export const EnvSchema = z.object({
@@ -15,10 +42,10 @@ export const EnvSchema = z.object({
         .int({message: "PORT must be an integer"})
         .positive({message: "PORT must be positive"})
         .default(8080),
-    DEV_API_URL: urlOrEmpty().default("http://localhost:8080"),
-    PROD_API_URL: urlOrEmpty().default("http://localhost:8080"),
-    DEV_CLIENT_URL: urlOrEmpty().default("http://localhost:3000"),
-    PROD_CLIENT_URL: urlOrEmpty().default("http://localhost:3000"),
+    DEV_API_URL: url("http://localhost:8080"),
+    PROD_API_URL: nullableUrl(null),
+    DEV_CLIENT_URL: url("http://localhost:3000"),
+    PROD_CLIENT_URL: nullableUrl(null),
     
     // Additional environment variables here
 });
@@ -33,9 +60,9 @@ export default function getEnv() {
         isDev: Env.NODE_ENV === "development",
         isTest: Env.NODE_ENV === "test",
         port: Env.PORT,
-        devApiUrl: Env.DEV_API_URL!,
-        prodApiUrl: Env.PROD_API_URL!,
-        devClientUrl: Env.DEV_CLIENT_URL!,
-        prodClientUrl: Env.PROD_CLIENT_URL!
+        devApiUrl: Env.DEV_API_URL,
+        prodApiUrl: Env.PROD_API_URL,
+        devClientUrl: Env.DEV_CLIENT_URL,
+        prodClientUrl: Env.PROD_CLIENT_URL
     });
 }
