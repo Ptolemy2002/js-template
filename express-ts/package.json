@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "bash ./scripts/build.sh && node ./bin/www",
-    "dev": "bash ./scripts/build.sh && nodemon ./bin/www --ignore swagger_output.json",
-    "build": "npm run swagger-autogen && tsc",
+    "start": "bash ./scripts/build.sh && tsx ./bin/www.ts",
+    "dev": "bash ./scripts/build.sh && tsx watch ./bin/www.ts --exclude swagger_output.json",
+    "build": "npm run swagger-autogen",
     "postinstall": "npx typesync",
     "uninstall": "bash ./scripts/uninstall.sh",
     "reinstall": "bash ./scripts/reinstall.sh",
-    "swagger-autogen": "ts-node src/services/swagger.ts"
+    "swagger-autogen": "tsx src/services/swagger.ts"
   },
   "repository": {
       "type": "git",

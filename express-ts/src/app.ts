@@ -1,7 +1,7 @@
 import appModulePath from 'app-module-path';
-appModulePath.addPath(__dirname);
+console.log("Adding current directory to module path:", process.cwd());
+appModulePath.addPath(process.cwd());
 
-import getEnv from "env";
 import ms from 'ms';
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
@@ -11,6 +11,8 @@ import cors from 'cors';
 import { HttpError } from 'http-errors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from 'services/swagger_output.json';
+
+import getEnv from 'env';
 const env = getEnv();
 
 import indexRouter from 'routes/index';
@@ -29,7 +31,7 @@ try {
     console.error("Error loading Swagger documentation:", error);
 }
 
-if (env.nodeEnv === 'production') {
+if (env.isProd) {
     const limiter = expressRateLimit({
         windowMs: ms("5m"),
         max: 100, // Limit each IP to 100 requests per windowMs
@@ -41,8 +43,8 @@ if (env.nodeEnv === 'production') {
 }
 
 app.use(cors({
-    origin: env.nodeEnv === 'production'
-        ? env.prodClientUrl! : env.devClientUrl,
+    origin: env.isProd ?
+        env.prodClientUrl! : env.devClientUrl,
     credentials: true
 }));
 
@@ -51,7 +53,7 @@ app.use('/', indexRouter);
 app.use(function(err: HttpError, req: Request, res: Response, next: NextFunction) {
     console.error(err.stack);
 
-    res.status(err.status || 500);
+    res.status(err.status ?? 500);
     res.json({ message: err.message });
 });
 

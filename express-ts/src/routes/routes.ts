@@ -33,7 +33,7 @@ router.post<
     // Parameters
     {},
     // Response body
-    {user: User},
+    {ok: true, user: User},
     // Request body
     User,
     // Query Parameters
@@ -62,6 +62,7 @@ router.post<
         #swagger.responses[201] = {
             description: 'User created successfully.',
             schema: {
+                ok: true,
                 user: {
                     $ref: '#/definitions/User'
                 }
@@ -70,7 +71,7 @@ router.post<
 
         #swagger.end
     */
-    res.status(201).send({user: req.body});
+    res.status(201).send({ok: true, user: req.body});
 });
 
 const indexRoutes = router;
