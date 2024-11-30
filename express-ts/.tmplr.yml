@@ -71,4 +71,5 @@ steps:
   - remove: "package-lock.json"
   - remove: "package-lock.json"
   - remove: "dist"
+  - remove: ".env"
   - remove: "node_modules"
