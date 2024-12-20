@@ -14,7 +14,7 @@ const doc = {
 	info: {
 		version: "1.0.0",
 		title: "{{ tmplr.project_name }}",
-		description: "Documentation of the V2X F24 API",
+		description: "Documentation of the {{ tmplr.project_name }}",
 	},
     host: baseUrl,
 	schemes: [env.isProd ? "https" : "http"],
