@@ -13,6 +13,7 @@
         "directory": "lib"
     },
     "scripts": {
+        "prepare": "npx ts-patch install -s",
         "build": "bash ./scripts/build.sh",
         "_build": "tsc --project ./tsconfig.json",
         "postinstall": "npx typesync",
@@ -27,5 +28,9 @@
         "release-minor": "bash ./scripts/release.sh minor",
         "release-major": "bash ./scripts/release.sh major"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "ts-patch": "^3.3.0",
+        "tsconfig-paths": "^4.2.0",
+        "typescript-transform-paths": "^3.5.3"
+    }
 }
