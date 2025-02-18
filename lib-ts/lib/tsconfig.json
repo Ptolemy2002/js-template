@@ -24,7 +24,8 @@
          "transform":"typescript-transform-paths",
          "afterDeclarations": true
       }
-   ]
+   ],
+   "noUncheckedIndexedAccess": true
   },
   "include": [
     "src",
