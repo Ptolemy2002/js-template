@@ -80,23 +80,10 @@ steps:
 
   - copy:
       path: "{{ tmpdir.scripts }}/general/**/*.*"
-    to: "lib/scripts"
-  - copy:
-      path: "{{ tmpdir.scripts }}/general/**/*.*"
-    to: "example/scripts"
-  - copy:
-      path: "{{ tmpdir.scripts }}/for-lib/**/*.*"
-    to: "lib/scripts"
-  - copy:
-      path: "{{ tmpdir.scripts }}/for-example/**/*.*"
-    to: "lib/scripts"
+    to: "scripts"
 
-  - update: "lib/README.md"
-  - update: "lib/package.json"
-  - update: "example/package.json"
-  - update: "example/**/*.ts"
-  - remove: "lib/package-lock.json"
-  - remove: "example/package-lock.json"
-  - remove: "lib/dist"
-  - remove: "lib/node_modules"
-  - remove: "example/node_modules"
+  - update: "README.md"
+  - update: "package.json"
+  - remove: "package-lock.json"
+  - remove: "dist"
+  - remove: "node_modules"
