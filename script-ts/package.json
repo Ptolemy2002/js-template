@@ -1,0 +1,27 @@
+{
+    "name": "{{tmplr.package_identifier}}",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "/dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "{{tmplr.repository_url}}"
+    },
+    "scripts": {
+        "prepare": "npx ts-patch install -s",
+        "build": "bash ./scripts/build.sh",
+        "_build": "tsc --project ./tsconfig.json",
+        "postinstall": "npx typesync",
+        "uninstall": "bash ./scripts/uninstall.sh",
+        "reinstall": "bash ./scripts/reinstall.sh"
+    },
+    "devDependencies": {
+        "ts-patch": "^3.3.0",
+        "tsconfig-paths": "^4.2.0",
+        "typescript-transform-paths": "^3.5.3"
+    }
+}
