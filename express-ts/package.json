@@ -6,6 +6,7 @@
     "start": "bash ./scripts/build.sh && tsx ./bin/www.ts",
     "dev": "bash ./scripts/build.sh && tsx watch ./bin/www.ts --exclude swagger_output.json",
     "build": "npm run swagger-autogen",
+    "typecheck": "tsc --noEmit",
     "postinstall": "npx typesync",
     "uninstall": "bash ./scripts/uninstall.sh",
     "reinstall": "bash ./scripts/reinstall.sh",

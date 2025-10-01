@@ -17,7 +17,8 @@
         "_build": "tsc --project ./tsconfig.json",
         "postinstall": "npx typesync",
         "uninstall": "bash ./scripts/uninstall.sh",
-        "reinstall": "bash ./scripts/reinstall.sh"
+        "reinstall": "bash ./scripts/reinstall.sh",
+        "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
         "ts-patch": "^3.3.0",

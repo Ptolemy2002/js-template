@@ -16,6 +16,7 @@
         "prepare": "npx ts-patch install -s",
         "build": "bash ./scripts/build.sh",
         "_build": "tsc --project ./tsconfig.json",
+        "typecheck": "tsc --noEmit",
         "postinstall": "npx typesync",
         "uninstall": "bash ./scripts/uninstall.sh",
         "reinstall": "bash ./scripts/reinstall.sh",
