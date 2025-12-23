@@ -1,0 +1,10 @@
+{
+    "name": "{{ tmplr.project_name }}",
+    "description": "Extension template using TypeScript",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "dist/index.html",
+        "default_icon": "dist/icons/default.png"
+    }
+}
