@@ -13,6 +13,7 @@
     },
     "scripts": {
         "prepare": "npx ts-patch install -s",
+        "start": "tsc && node ./dist/index.js",
         "build": "bash ./scripts/build.sh",
         "_build": "tsc --project ./tsconfig.json",
         "postinstall": "npx typesync",
