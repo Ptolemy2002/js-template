@@ -17,6 +17,9 @@
         "build": "bash ./scripts/build.sh",
         "_build": "tsc --project ./tsconfig.json",
         "typecheck": "tsc --noEmit",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
         "postinstall": "npx typesync",
         "uninstall": "bash ./scripts/uninstall.sh",
         "reinstall": "bash ./scripts/reinstall.sh",
@@ -30,6 +33,9 @@
         "release-major": "bash ./scripts/release.sh major"
     },
     "devDependencies": {
+        "@types/jest": "^29.5.0",
+        "jest": "^29.5.0",
+        "ts-jest": "^29.1.0",
         "ts-patch": "^3.3.0",
         "tsconfig-paths": "^4.2.0",
         "typescript-transform-paths": "^3.5.3"
