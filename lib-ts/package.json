@@ -29,6 +29,7 @@
         "release-major": "bash ./scripts/release.sh major"
     },
     "devDependencies": {
+        "@types/node": "^25.3.5",
         "@types/jest": "^29.5.0",
         "jest": "^29.5.0",
         "ts-jest": "^29.1.0",
