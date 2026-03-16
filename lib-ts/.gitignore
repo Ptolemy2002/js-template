@@ -26,3 +26,4 @@ coverage
 
 # NPM
 package-lock.json
+node-compile-cache
