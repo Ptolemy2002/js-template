@@ -1,7 +1,7 @@
 # {{ tmplr.project_name }}
 
 # Table of Contents
-Because there is so much to document, it has been broken up into multiple files. The following is a list of the documentation files for this library:
+Documentation has been broken up into multiple files. The following is a list of these files:
 - [type-reference](./docs/type-reference.md) - A reference for all public types used in the library.
 
 ## Peer Dependencies
