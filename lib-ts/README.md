@@ -4,6 +4,9 @@
 Documentation has been broken up into multiple files. The following is a list of these files:
 - [type-reference](./docs/type-reference.md) - A reference for all public types used in the library.
 
+## Pending Breaking Changes
+Breaking changes that would improve the library, but are not worth a major release by themselves, are tracked in [PENDING_BREAKING_CHANGES.md](./PENDING_BREAKING_CHANGES.md) along with the non-breaking workarounds currently in place for them. They will be made in the next major release.
+
 ## Peer Dependencies
 
 ## Commands
