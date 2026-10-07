@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 # NPM
-package-lock.json
 node-compile-cache
