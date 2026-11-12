@@ -4,6 +4,8 @@ The project is a TypeScript library with all source files in `./src` and all tes
 
 `./src/index.ts` is the entry point of the library, so any public component can be imported directly from there.
 
+Imports between source files use absolute paths from the project root (e.g. `import { helper } from "src/utils/helper"`), not relative paths. `typescript-transform-paths` rewrites them to relative paths in the build output, and Jest's `moduleNameMapper` resolves them in tests.
+
 The folder `./docs` should contain documentation for every public component (Table of contents in `./README.md`), so reading the relevant parts of that is a good way to get an overview without needing to search specific sections. You may be given a task in a state where there are currently unstaged changes or untracked files, in which case the docs may not be up to date. If you need to check for any additions, use `git status` and `git diff`. If you update any `Type Reference` section, search for other references to that type in the `docs` folder, as docs files redundantly list relevant types at the top of them for ease of reference, so you will need to update those as well.
 
 If you find yourself needing to write a new docs file, read `./DOCS_GUIDE.md` for detailed instructions on file placement, structure, and formatting conventions.
